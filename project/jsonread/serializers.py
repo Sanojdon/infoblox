@@ -1,8 +1,7 @@
-from rest_framework.serializers import ModelSerializer
-
+from rest_framework import serializers
 from jsonread.models import DataRead
 
-class DataReadSerializer(ModelSerializer):
+class DataReadSerializer(serializers.ModelSerializer):
     class Meta:
         model = DataRead
         fields = (
