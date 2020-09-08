@@ -19,5 +19,5 @@ Steps to run the project
 8. /jsonread/api/all : Will let you enter the details for the database
 
 Command Line executables:
-python3 manage.py add_data <location of your json file> : Will run the json file and enter into the database
-python3 manage.py read_data <id of the user> : Will print the firstname and last name of the appropriate user
+  python3 manage.py add_data <location of your json file> : Will run the json file and enter into the database
+  python3 manage.py read_data <id of the user> : Will print the firstname and last name of the appropriate user
