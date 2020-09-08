@@ -8,6 +8,7 @@ from rest_framework.response import Response
 
 from jsonread.models import DataRead
 from jsonread.serializers import DataReadSerializer
+from rest_framework.pagination import PageNumberPagination
 
 
 def index(request):
@@ -19,9 +20,12 @@ def index(request):
 
 # Create your views here.
 class DataReadList(APIView):
+    pagination_class = PageNumberPagination
     def get(self, request, format=None):
         data = DataRead.objects.all()
-        serializer = DataReadSerializer(data, many=True)
+        paginator = PageNumberPagination()
+        result_page = paginator.paginate_queryset(data, request)
+        serializer = DataReadSerializer(result_page, many=True)
         return Response(serializer.data)
 
 class DataReadCreate(APIView):
