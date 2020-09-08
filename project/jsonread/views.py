@@ -41,5 +41,5 @@ class DataReadDetail(APIView):
 
     def get(self, request, pk, format=None):
         data = self.get_object(pk)
-        serializer = DataReadSerializer(snippet)
+        serializer = DataReadSerializer(data)
         return Response(serializer.data)
