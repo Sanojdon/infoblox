@@ -1,42 +1,129 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <title>Infoblox Assessment Project</title>
     <meta charset="utf-8">
-    <title>JSON Read Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+      #major_items{
+        color: red;
+      }
+      .row{
+        padding: 1%
+      }
+    </style>
   </head>
   <body>
+
+  <div class="jumbotron">
     <h1>Infoblox Assessment Project</h1>
-    <h2>{{ name }}</h2>
+    <h3>{{name}}</h3>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h1 id="major_items">Introduction</h1>
+      <p>
+        I thank Infoblox for giving me an opportunity to showcase my talent in Django through this project. Most of the tools that are used in this project
+        are pretty much new to me. Across my software industry experience, I have heard of the frameworks and the tools mentioned in the requirements, but
+        didn't get an opportunity to work on it. Please consider this as my beginners step, in using these tools, and reach out to me, in case of any queries.
+      </p>
+      <p>
+        While I was working on this project, my laptop got some issues and was not working properly. It took me time to set up the new system and install the
+        supporting softwares and all. I thank the management and Julle for bearing with me through this crisis. All the work that I have done, was saved locally
+        in that device. Hence, it taught me a new lesson, to push each and every change into my git repo continuously.
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <h2>Packages and Tools Used</h2>
+      <ul>
+        <li>Django Framework 3.1.1</li>
+        <li>Django Rest Framework 3.11.1</li>
+        <li>Postgresql with psycopg2 package</li>
+        <li>Bootstrap 4</li>
+      </ul>
+    </div>
+    <div class="col-sm-6">
+      <h2>Command Line Executions</h2>
+      <ul>
+        <li>
+          <strong>python3 manage.py add_data [path_to_json_file]</strong>
+          <p>The command to insert the data from the JSON file into the models. Each and every key in the sample JSON
+          has been mapped to the appropriate column in the table.</p>
+        </li>
+        <li>
+          <strong>python3 manage.py read_data [id]</strong>
+          <p>The command is used to get you the first and last name of the id that is provided.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <h2>Setting up the project for testing</h2>
+      <ol>
+        <li>Create a Database <strong>info</strong> in your postgres</li>
+        <li>Create a user <strong>sample_user</strong> with password <strong>infoblox123</strong> in your postgres server.</li>
+        <li>Run <strong>python3 manage.py migrate</strong> for importing the models into your postgres info database</li>
+        <li>Create a superuser for you to control the application <strong>python3 manage.py createsuperuser</strong></li>
+        <li>Run the application in your local system by running the command <strong>python3 manage.py runserver</strong></li>
+      </ol>
+    </div>
+    <div class="col-sm-6">
+      <h2>Create New Data</h2>
+      <p><a href="/api/new">Application Add</a></p>
+      <p>
+        The application has been set up to get the data in the JSON format that you have given in the mock data set, with change in the column names.
+        The columns in the database has been prefixed with dr_ for dataread convention.
+      </p>
+      <code>
+        {<br>
+      "dr_id": [id],<br>
+      "dr_fname": [first name],<br>
+      "dr_lname": [last name],<br>
+      "dr_city": [city],<br>
+      "dr_enabled": [true/false],<br>
+      "dr_guid": [guid]<br>
+  }
+      </code>
+    </div>
+  </div>
+
+<div class="row">
+  <div class="col-sm-3">
+    <h2>Django Rest Framework</h2>
+    <p>Tutorial : <a href="https://www.django-rest-framework.org/tutorial/quickstart/">Django Rest Framework tutorial</a></p>
+    <p>Integration of API with the basic Django application. </p>
+  </div>
+  <div class="col-sm-3">
+    <h2>Filtering</h2>
+    <p>Application Link : <a href="/api/all?enabled=True">Applied Filter</a></p>
     <p>
-      This is my project for Infoblox Assessment. The technologies that have been used are given below:
+      Used the default Django Rest Framework. Refer the Django Rest Framework document given. You can chage the query string with enabled to
+      True or False, to see the required data. If None is given there will not be any filtering.
     </p>
-    <ul>
-      <li>Django 3.1</li>
-      <li>Django Rest Framework 3.11.1</li>
-      <li>Postgresql with Psycopg2 package</li>
-    </ul>
-    <p>
-      Eventhough, I have heard about the Django Rest Framework, I did not have an opportunity to work on it.
-      I have worked on Django framework before, for few projects. Please contact me, in case of any queries concerning the project.
-      The setup I have made with Django Rest Framework is pretty basic one with the help of
-      <a href="https://www.django-rest-framework.org/tutorial/">Django Rest Framework tutorial</a>.
-      The pagination used is Page number pagination hence, for viewing all the data, you have to append ?page[number] for all data
-    </p>
-    <p>
-      Filtering has been applied to the /api/all page. Give : /api/all?enabled=True
-    </p>
-    <p>
-      The useful links are given below for your reference :
-    </p>
-    <ul>
-      <li><a href="/api/all">List all data</a></li>
-      <li><a href="/api/new">Add new data</a></li>
-      <li>Get detail of a user with id : /api/[id]</li>
-    </ul>
-    <p>The command line executions that have been implemented are : </p>
-    <ul>
-      <li>python3 manage.py add_data [path to JSON file]</li>
-      <li>python3 manage.py read_data [id]</li>
-    </ul>
+  </div>
+  <div class="col-sm-3">
+    <h2>Pagination</h2>
+    <p>Application Link : <a href="/api/all?page=3">Applied Pagination</a></p>
+    <p>The PageNumberPagination has been used. Refer the Django Rest Framework document given.</p>
+  </div>
+  <div class="col-sm-3">
+    <h2>API Authentication Token</h2>
+    <p>Tutorial : <a href="https://simpleisbetterthancomplex.com/tutorial/2018/11/22/how-to-implement-token-authentication-using-django-rest-framework.html">Implement Token Authentication</a></p>
+    <p>Application Link : <a href="/api-token-auth">API Token</a></p>
+    <p>The application link will nt accept GET request. You need to provide it with the username and password.
+      A token will be generated, once you run it. You can use the token accordingly. For further details, look up into the tutorial.</p>
+  </div>
+</div>
+
   </body>
 </html>
