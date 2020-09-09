@@ -15,7 +15,7 @@ class Command(BaseCommand):
             with open(r) as json_file:
                 data = json.load(json_file)
                 for i in data:
-                    b = DR(dr_id=i["id"], dr_fname=i["first_name"], dr_lname=i["last_name"], dr_city=i["city"], dr_data=i["data"])
+                    b = DR(dr_id=i["id"], dr_fname=i["first_name"], dr_lname=i["last_name"], dr_city=i["city"], dr_enabled=i["data"][0]["enabled"], dr_guid=i["data"][0]["guid"])
                     b.save()
 
 
