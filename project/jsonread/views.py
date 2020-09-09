@@ -23,7 +23,10 @@ class DataReadList(APIView):
     pagination_class = PageNumberPagination
     def get(self, request, format=None):
         data = DataRead.objects.all()
+        enabled = self.request.query_params.get('enabled', None)
         paginator = PageNumberPagination()
+        if enabled is not None:
+            data = data.filter(dr_enabled=enabled)
         result_page = paginator.paginate_queryset(data, request)
         serializer = DataReadSerializer(result_page, many=True)
         return Response(serializer.data)
